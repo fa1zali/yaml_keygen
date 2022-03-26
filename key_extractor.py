@@ -34,12 +34,12 @@ def read_yaml(filename: str) -> dict:
         quit()
 
 
-def get_keys(inp_dict: dict, sep=">", _prefix="") -> list:
+def get_keys(data: dict, sep=">", _prefix="") -> list:
     """
     Iterate over all the key value pairs in a YAML dictionary and returns the keys.
 
     ### Parameters
-    - inp_dict : dict
+    - data : dict
         - YAML in dictionary format.
     - sep : str, (default ">")
         - Used for separating the nested keys.
@@ -51,8 +51,8 @@ def get_keys(inp_dict: dict, sep=">", _prefix="") -> list:
         - List of keys from the YAML.
     """
     try:
-        if isinstance(inp_dict, dict):
-            for k, v2 in inp_dict.items():
+        if isinstance(data, dict):
+            for k, v2 in data.items():
                 res = not bool(v2)
                 p2 = f"{_prefix} {k}"
                 if res == True:
@@ -62,8 +62,8 @@ def get_keys(inp_dict: dict, sep=">", _prefix="") -> list:
                 else:
                     get_keys(v2, sep, p2)
 
-        elif isinstance(inp_dict, list):
-            for i, v2 in enumerate(inp_dict):
+        elif isinstance(data, list):
+            for i, v2 in enumerate(data):
                 p2 = f"{_prefix} {i}"
                 get_keys(v2, sep, p2)
 
