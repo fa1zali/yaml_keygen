@@ -1,67 +1,78 @@
 # Author: Faisal Ali
 # Creation Date: Mar, 26 2022
-# Version: 0.1.3
+# Version: 0.1.4
 # Revision Date: Mar, 26 2022
 
 # Import libraries
 import ruamel.yaml
 
-# Creating an empty list for storing keys
-yaml_keys = list()
+# Creating an empty list for storing keys extracted from YAML
+keys = list()
 
 
 def read_yaml(filename: str) -> dict:
     """
-    Takes the path and filename for the YAML, reads the same and returns a python dictionary.
+    Takes the path and filename for the YAML, reads it and returns a python dictionary.
 
-    filename: path and filename for YAML.
+    ### Parameters
+    - filename : str
+        - Path and filename for YAML.
 
-    return: dict of the YAML.
+    ### Returns
+    - dict
+        - A dictionary object for the YAML.
     """
-
     try:
-        yaml_keys.clear()
+        keys.clear()
         with open(filename) as file:
-            yaml_object = ruamel.yaml.load(
+            object = ruamel.yaml.load(
                 file, Loader=ruamel.yaml.RoundTripLoader, preserve_quotes=True)
-            return yaml_object
+            return object
 
     except Exception as error:
         print(f"Unable to read the file: {error}")
         quit()
 
 
-def get_keys(yaml_dict: dict, sep=">", prefix="") -> list:
+def get_keys(inp_dict: dict, sep=">", _prefix="") -> list:
     """
     Iterate over all the key value pairs in a YAML dictionary and returns the keys.
 
-    yaml_dict: YAML in dict() format.
+    ### Parameters
+    - inp_dict : dict
+        - YAML in dictionary format.
+    - sep : str, (default ">")
+        - Used for separating the nested keys.
+    - _prefix : str
+        - Not to be modified by user. For internal use
 
-    return: list of keys from the YAML.
+    ### Returns
+    - List
+        - List of keys from the YAML.
     """
     try:
-        if isinstance(yaml_dict, dict):
-            for k, v2 in yaml_dict.items():
+        if isinstance(inp_dict, dict):
+            for k, v2 in inp_dict.items():
                 res = not bool(v2)
-                p2 = f"{prefix} {k}"
+                p2 = f"{_prefix} {k}"
                 if res == True:
                     tmp1 = p2.strip()
                     tmp2 = tmp1.split(" ")
-                    yaml_keys.append(sep.join(tmp2))
+                    keys.append(sep.join(tmp2))
                 else:
                     get_keys(v2, sep, p2)
 
-        elif isinstance(yaml_dict, list):
-            for i, v2 in enumerate(yaml_dict):
-                p2 = f"{prefix} {i}"
+        elif isinstance(inp_dict, list):
+            for i, v2 in enumerate(inp_dict):
+                p2 = f"{_prefix} {i}"
                 get_keys(v2, sep, p2)
 
         else:
-            tmp1 = prefix.strip()
+            tmp1 = _prefix.strip()
             tmp2 = tmp1.split(" ")
-            yaml_keys.append(sep.join(tmp2))
+            keys.append(sep.join(tmp2))
 
-        return yaml_keys
+        return keys
 
     except Exception as error:
         print(f"Unable to traverse the nested dictionary: {error}")
@@ -72,10 +83,15 @@ def to_text(data: list, filename: str) -> object:
     """
     Saves the data to a text file.
 
-    data: Data in the form of list (YAML Keys)
-    filename: path and filename of the TXT file
+    ### Parameters
+    - data : list
+        - Data in the form of list (YAML Keys).
+    - filename : str
+        - Path and filename of the TXT file
 
-    return: TXT File
+    ### Returns
+    - TXT File
+        - A TXT file is returned with the keys.
     """
     with open(filename, mode="w+") as txt_file:
         for elm in data:
