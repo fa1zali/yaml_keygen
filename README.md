@@ -25,7 +25,7 @@ yk = YAML()
 yaml = yk.read(filename="C:/Users/fa1za/Desktop/test1.yaml")
 
 # Extracts the keys from dictionary object and stores them in a list
-keys = yk.get_keys(data=yaml)
+keys = yk.get_keys(data=yaml, sep='/')
 
 # Saves the extracted keys to a text file
 yk.to_text(data=keys, filename="C:/Users/fa1za/Desktop/test1.txt")
