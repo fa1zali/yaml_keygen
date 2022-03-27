@@ -1,6 +1,6 @@
 # Author: Faisal Ali
 # Creation Date: Mar, 26 2022
-# Version: 0.1.6
+# Version: 0.1.7
 # Revision Date: Mar, 27 2022
 
 # Import libraries

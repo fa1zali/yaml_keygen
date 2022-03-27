@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 setup(
     name='yaml_keygen',
     packages=["yaml_keygen"],
-    version='0.1.6',
+    version='0.1.7',
     description='A Python module for extracting keys from a YAML file.',
     author='Faisal Ali',
     author_email='fzl.ali33@gmail.com',
