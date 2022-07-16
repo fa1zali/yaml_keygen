@@ -11,7 +11,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install yaml_ke
 pip install yaml_keygen
 ```
 
-The source code is currently hosted on GitHub at: https://github.com/Fa1sal-ali/yaml_keygen
+The source code is currently hosted on GitHub at: https://github.com/fa1zali/yaml_keygen
 
 ## Get Started
 
