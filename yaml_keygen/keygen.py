@@ -1,11 +1,10 @@
 # Author: Faisal Ali
 # Creation Date: Mar, 26 2022
-# Version: 0.1.7
-# Revision Date: Mar, 27 2022
+# Version: 0.1.8
+# Revision Date: June, 16 2022
 
 # Import libraries
 import ruamel.yaml
-
 
 class YAML:
 

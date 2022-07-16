@@ -1,1 +1,1 @@
-from yaml_keygen.keygen import *
+from .keygen import *
